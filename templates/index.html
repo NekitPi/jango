@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        Список книг
+        {{books}}
+    </h1>
+
+    <h1>
+        Жанры
+        {% for genre in genres %}
+            <p> {{genre}}</p>
+    </h1>
+    {% for book in books %}
+    {% endfor %}
+    <p> {{books}}</p>
+</body>
+</html>
