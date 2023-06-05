@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Книги</title>
 </head>
 <body>
     <h1>
         Список книг
-        {{books}}
+
     </h1>
 
-    <h1>
-        Жанры
-        {% for genre in genres %}
-            <p> {{genre}}</p>
-    </h1>
     {% for book in books %}
-    {% endfor %}
-    <p> {{books}}</p>
+       <p>
+        Название: <a href="{% url 'get_book' book.id %}">
+            {{book.title}}
+        </a>
+        <p>Автор {{book.author}}</p>
+    {%endfor%}
+    <br>
+</p>
+
+
+
+
 </body>
 </html>

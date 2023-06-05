@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{book.title}}</title>
+</head>
+<body>
+
+<h1>{{book.title}}</h1>
+<h2>{{book.author}}</h2>
+<br>
+<p> Год: {{book.year}}</p>
+<p> Рейтинг: {{book.raiting}}</p>
+<p> Издатель {{book.publisher.title}}</p>
+<p> Язык {{book.publisher.get_language_display}}</p>
+{% if book.genre %}
+<p> Жанр: {{book.genre.title}}</p>
+{% else %}
+<p> Жанр: не указан </p>
+{% endif %}
+<p> Тэги: </p>
+{% for tag in book.tags.all %}
+    <b> {{tag.title}}</b>
+{% endfor %}
+
+</body>
+</html>
