@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Посты</title>
+</head>
+<body>
+    <h1>
+        Список постов
+
+    </h1>
+
+    {% for post in posts %}
+        <p>{{post.title}} - {{post.description}}</p>
+
+    {%endfor%}
+
+    <h1>
+        Список тэгов
+
+    </h1>
+
+    {% for tag in tags %}
+        <p>{{tag.title}}</p>
+
+    {%endfor%}
+
+
+
+
+</body>
+</html>
