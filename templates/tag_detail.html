@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тэг</title>
+</head>
+<body>
+ На детальной странице с тегом {{ list }}
+<p> Тэг: {{ tag.title }} </p>
+{% for book in tag_books %}
+ <p> {{book.title }} </p>
+{% endfor %}
+</body>
+</html>
