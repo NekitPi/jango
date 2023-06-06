@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Посты</title>
 </head>
 <body>
     <h1>
         Список постов
+        Список постов:
 
     </h1>
 
     {% for post in posts %}
         <p>{{post.title}} - {{post.description}}</p>
 
+        <p>{{post.id}}.
+            Название: <a href="{% url 'get_post' post.id %}">
+            {{post.title}}
+        </a>  - {{post.description}}</p>
+
     {%endfor%}
 
     <h1>
-        Список тэгов
-
+        Список тэгов:
     </h1>
 
     {% for tag in tags %}
         <p>{{tag.title}}</p>
 
+    <p><a href="{% url 'get_tag' tag.title %}" >
+        {{tag.title}}
+    </a></p>
     {%endfor%}
-
-
-
-
-</body>
-</html>

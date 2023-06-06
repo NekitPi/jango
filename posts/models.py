@@ -3,9 +3,9 @@ from django.db import models
 
 class Post(models.Model):
     CATEGORY = (
-        ("h", "Health"),
-        ("f", "Fashion"),
-        ("l", "Lifestyle")
+        ("n", "News"),
+        ("m", "Music"),
+        ("s", "Sport")
     )
 
     title = models.CharField(max_length=100, blank=False)
