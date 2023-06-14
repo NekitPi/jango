@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Book, Genre, Publisher, Tag
 from django.http import HttpResponse
 from .forms import BookForm
@@ -35,16 +35,50 @@ def get_tag_books(request, title):
     return render(request, "tag_detail.html", context={"tag_books": tag_books})
 
 def add_book(request):
-    form = BookForm()
-    return render(request,"add_book.html", context={"form": form})
+    if request.method == "GET":
+        form = BookForm()
+        return render(request, "add_book.html", context={"form": form})
+    elif request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            return HttpResponse("<h1>Что-то пошло не так! </h1>")
 
-def create_book(request):
-    print (request.POST)
-    genre = Genre.objects.get(id=requests.POST['genre'])
-    Book.objects.create(title = request.POST ['title'],
-                        author = requests.POST ['author'],
-                        tags = request.POST ['tags'],
-                        raiting = requests.POST['raiting'],)
-                        # publisher = requests.POST['publisher'],
-                        # genre = requests.POST['genre'])
-    return HttpResponse("<h1> Получилось! </h1>")
+        # publisher_id = request.POST['publisher']
+        # genre_id = request.POST['genre']
+        #
+        # if publisher_id != '' and genre_id != '':
+        #     publisher = Publisher.objects.get(id=publisher_id)
+        #     genre=Genre.objects.get(id=genre_id)
+        # else:
+        #     publisher = None
+        #     genre = None
+        #
+        # book = Book.objects.create(title = request.POST['title'],
+        #                     author = request.POST['author'],
+        #                     year=request.POST['year'],
+        #                     raiting=request.POST['raiting'],
+        #                     publisher=publisher,
+        #                     genre=genre)
+        # tags = request.POST.getlist('tags')
+        # book.tags.set(tags)
+        # book.save()
+
+        return redirect("books")
+
+
+def search_book(request):
+    search_query = request.GET['search']
+    books = Book.objects.filter(title__contains=search_query)
+    print(books)
+    return render(request, 'search_book.html', context={"books": books})
+
+def delete_book(request, id):
+    try:
+        book = Book.objects.get(id=id)
+    except Book.DoesNotExist:
+        return HttpResponse(f"<h1> Книги с таким айди: {id} не существует </h1>")
+
+        book.delete()
+        return redirect ('books')

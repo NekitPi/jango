@@ -13,7 +13,7 @@ class Post(models.Model):
     tags = models.ManyToManyField("PostTag", related_name="posts")
     category = models.CharField(max_length=5, choices=CATEGORY, default="l", blank=True)
 
-    date_create = models.DateField(auto_now_add=True)
+
 
     def __str__(self):
         return f"{self.id}. Пост: {self.title}, {self.description}" \
