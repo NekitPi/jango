@@ -35,6 +35,6 @@ urlpatterns = [
     path('add_book/', add_book, name="add_book"),
     path('search_book/', search_book, name="search_book"),
     path('delete_book/<int:id>/', delete_book, name="delete_book")
-    # path('create_book/', create_book, name="create_book")
+
 
 ]

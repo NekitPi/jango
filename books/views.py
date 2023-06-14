@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .models import Book, Genre, Publisher, Tag
 from django.http import HttpResponse
 from .forms import BookForm
@@ -69,9 +69,16 @@ def add_book(request):
 
 
 def search_book(request):
-    search_query = request.GET['search']
-    books = Book.objects.filter(title__contains=search_query)
-    print(books)
+    title = request.GET['title']
+    genre = request.GET['genre']
+
+    books = Book.objects.all()
+    if title != '':
+        print("Получил и фильтрую по названию")
+        books = books.filter(title__contains=title)
+    if genre != '':
+        print("Получил и фильтрую по жанру")
+        books = books.filter(genre__title__contains = genre)
     return render(request, 'search_book.html', context={"books": books})
 
 def delete_book(request, id):
@@ -79,6 +86,5 @@ def delete_book(request, id):
         book = Book.objects.get(id=id)
     except Book.DoesNotExist:
         return HttpResponse(f"<h1> Книги с таким айди: {id} не существует </h1>")
-
-        book.delete()
-        return redirect ('books')
+    book.delete()
+    return redirect('books')

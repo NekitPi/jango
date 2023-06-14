@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Book, Genre, Movie, Category, Tag, Publisher
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "raiting", "year", "publisher", "genre", "get_tags")
+    list_display = ("id", "title", "raiting", "year", "publisher", "genre", "get_tags", "created_at")
 
     def get_tags(self, obj):
         tags = obj.tags.all()

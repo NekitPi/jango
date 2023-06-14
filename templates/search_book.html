@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Поиск книг</h1>
+
+    {% if books %}
     {% for book in books %}
         <p>
             Название: <a href="{% url 'get_book' book.id %}">
@@ -18,5 +20,9 @@
         <br>
 
     {% endfor %}
+
+    {% else %}
+        <h2> Книг с такими фильтрами нет! </h2>
+    {% endif %}
 </body>
 </html>

@@ -4,7 +4,7 @@ class Tag(models.Model):
     title = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"Тэг: {self.title}"
+        return f"{self.title}"
 
 class Publisher(models.Model):
     LANGUAGES = (
@@ -31,7 +31,7 @@ class Book(models.Model):
     publisher = models.OneToOneField("Publisher", on_delete=models.DO_NOTHING, default=None,null=True,blank=True)
     tags = models.ManyToManyField("Tag", related_name="books",blank=True)
     genre = models.ForeignKey("Genre", on_delete=models.DO_NOTHING, null=True, blank=True, related_name='books')
-    # created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Книга: {self.id} Название: {self.title} Автор: {self.author}"
