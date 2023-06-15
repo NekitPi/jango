@@ -1,13 +1,11 @@
 </head>
 <body>
     <h1>
-        Список постов
         Список постов:
 
     </h1>
 
     {% for post in posts %}
-        <p>{{post.title}} - {{post.description}}</p>
 
         <p>{{post.id}}.
             Название: <a href="{% url 'get_post' post.id %}">
@@ -21,9 +19,11 @@
     </h1>
 
     {% for tag in tags %}
-        <p>{{tag.title}}</p>
 
     <p><a href="{% url 'get_tag' tag.title %}" >
         {{tag.title}}
     </a></p>
     {%endfor%}
+
+</body>
+</html>

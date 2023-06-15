@@ -24,6 +24,8 @@
 <b> <a href="{% url 'get_tag_books' tag.title %}"> {{tag.title}} </a> </b>
 {% endfor %}
 <br>
+<br>
+
 <b> <a href="{% url 'delete_book' book.id %}">Удалить книгу</a></a>
 
 </body>

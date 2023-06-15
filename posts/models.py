@@ -17,7 +17,7 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.id}. Пост: {self.title}, {self.description}" \
-               f", {self.category}, {self.date_create}"
+               f", {self.category}"
 
     class Meta:
         verbose_name = "Пост"
@@ -32,3 +32,4 @@ class PostTag(models.Model):
     class Meta:
         verbose_name = "Тэг"
         verbose_name_plural = "Тэги"
+

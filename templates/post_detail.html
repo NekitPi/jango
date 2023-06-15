@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{post.id}}. Пост </title>
+</head>
+<body>
+
+<h1>{{post.title}}</h1>
+
+<p>{% if post.category %}</p>
+Категория: {{post.get_category_display}}
+{% else %}
+<p> Категория: отсутствует</p>
+{%endif%}
+
+<br>
+
+<p>{% if post.description %}</p>
+Описание: {{post.description}}
+{% else %}
+<p> Описание отсутствует :( </p>
+{%endif%}
+<br>
+
+<p> Теги:
+    {% for tag in post.tags.all %}
+    <b3>{{tag.title}}</b3>
+    {%endfor%}
+</p>
+
+
+</body>
+</html>
