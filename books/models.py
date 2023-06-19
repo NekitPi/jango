@@ -33,6 +33,8 @@ class Book(models.Model):
     genre = models.ForeignKey("Genre", on_delete=models.DO_NOTHING, null=True, blank=True, related_name='books')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    image = models.ImageField(null=True, blank=True)
+
     def __str__(self):
         return f"Книга: {self.id} Название: {self.title} Автор: {self.author}"
     class Meta:

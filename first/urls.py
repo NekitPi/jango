@@ -19,6 +19,10 @@ from django.urls import path
 from .views import first,second_func,my_age
 from books.views import books, get_book, get_genre_books, get_tag_books, add_book, search_book, delete_book
 from posts.views import posts,get_tag_post, get_post
+from users.views import register_user
+
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +39,10 @@ urlpatterns = [
     path('get_tag/<str:title>/', get_tag_books, name="get_tag_books"),
     path('add_book/', add_book, name="add_book"),
     path('search_book/', search_book, name="search_book"),
-    path('delete_book/<int:id>/', delete_book, name="delete_book")
-
+    path('delete_book/<int:id>/', delete_book, name="delete_book"),
+    path('registration/', register_user, name="register")
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
