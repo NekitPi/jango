@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import UserForm, LoginUserForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 import django
 
 def register_user(request):
@@ -36,12 +36,22 @@ def login_user(request):
         password = request.POST['password']
 
         user = authenticate(username = username, password = password)
-
         if user is not None:
-            return HttpResponse("<h1> Логин и пароль верный, вы можете войти! </h1>")
+            login(request, user = user)
         else:
-            return HttpResponse("<h1> Проверьте правильность пароля </h1>")
-        print(user)
-        form = LoginUserForm()
+            return HttpResponse("<h1> Что-то пошло не так </h1>")
+        return redirect('books')
 
-        return render(request, "login_user.html", context={"form": form})
+
+        # if user is not None:
+        #     return HttpResponse("<h1> Логин и пароль верный, вы можете войти! </h1>")
+        # else:
+        #     return HttpResponse("<h1> Проверьте правильность пароля </h1>")
+        # print(user)
+        # form = LoginUserForm()
+        #
+        # return render(request, "login_user.html", context={"form": form})
+
+def logout_user(request):
+    logout(request)
+    return redirect('books')

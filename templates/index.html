@@ -11,8 +11,18 @@
         <input placeholder="Введите жанр"  type="text" name="genre">
         <input type="submit" value="OK">
     </form>
-    <b> <h2>  <a href="{% url 'register' %}">Регистрация</a> </b> </h2>
 
+    {% if request.user.is_authenticated %}
+    <b> <h2>  <a href="{% url 'add_book' %}">Добавить книгу</a> </b> </h2>
+
+    <h3>  Вы успешно вошли как {{request.user.username}}! </h3>
+     <b> <h3>  <a href="{% url 'logout' %}">Выход</a> </b>
+    {% else %}
+
+    <b> <h2>  <a href="{% url 'register' %}">Регистрация</a> </b> </h2>
+    <b> <h2>  <a href="{% url 'login' %}">Вход</a> </b>
+
+    {% endif %}
 
     <h1>
         Список книг
@@ -29,7 +39,10 @@
         <br>
 
     {% endfor %}
-    <b> <h2>  <a href="{% url 'add_book' %}">Добавить книгу</a> </b> </h2>
+
+
+
+
 
 
 </body>

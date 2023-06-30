@@ -29,11 +29,25 @@
 {% for tag in book.tags.all %}
 <b> <a href="{% url 'get_tag_books' tag.title %}"> {{tag.title}} </a> </b>
 {% endfor %}
+
+<p> Добавил на сайт {{book.user.username }}</p>
 <br>
 <br>
+
+
+
+
+    {% if request.user.username == book.user.username %}
 
 <b> <a href="{% url 'delete_book' book.id %}">Удалить книгу</a></a>
 <b> <a href="{% url 'update_book_by_id' book.id %}">Редактировать книгу</a></a>
 
+    {% endif %}
+
+        <form action="{%url 'add_comment' book.id %}" method="post">
+        {% csrf_token %}
+        <textarea name ="comment"> </textarea>
+        <input type="submit" value="Добавить комментарий">
+</form>
 </body>
 </html>
