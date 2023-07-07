@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .forms import UserForm, LoginUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
+
 import django
 
 def register_user(request):
@@ -23,6 +26,10 @@ def register_user(request):
                 return HttpResponse("<h1> Пользователь с таким логином существует </h1>")
             user.set_password(request.POST['password'])
             user.save()
+            send_mail('Успешная регистрация!',
+                      'Вы успешно зарегистрировались!',
+                      settings.DEFAULT_FROM_EMAIL,
+                      settings.RECIPIENTS_EMAIL)
             return HttpResponse("<h1> Вы успешно зарегались! </h1>")
 
 def login_user(request):

@@ -15,11 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from .views import first,second_func,my_age
-from books.views import books, get_book, get_genre_books, get_tag_books, add_book, search_book, delete_book, update_book, add_comment
 from posts.views import posts,get_tag_post, get_post
-from users.views import register_user, login_user, logout_user
+from django.utils.datastructures import MultiValueDictKeyError
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -29,22 +28,12 @@ urlpatterns = [
     path('index/', first),
     path('second/', second_func),
     path('age/', my_age),
-    path('get_books/', books, name='books'),
-
-    path('get_books/<int:id>/', get_book, name="get_book"),
-    path('get_genre/<str:title>/', get_genre_books, name="get_genre"),
     path('get_posts/', posts),
     path('get_posts/<int:id>/', get_post, name="get_post"),
     path('get_posts/<str:title>/', get_tag_post, name="get_tag"),
-    path('get_tag/<str:title>/', get_tag_books, name="get_tag_books"),
-    path('add_book/', add_book, name="add_book"),
-    path('update_book/<int:id>/', update_book, name="update_book_by_id"),
-    path('search_book/', search_book, name="search_book"),
-    path('delete_book/<int:id>/', delete_book, name="delete_book"),
-    path('add_comment/<int:id>/', add_comment, name = "add_comment"),
-    path('registration/', register_user, name="register"),
-    path('login/', login_user, name='login'),
-    path('logout/', logout_user, name='logout')
+    path('', include('books.urls')),
+    path('users/', include('users.urls'))
+
 
 
 ]

@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Поиск книг</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}
+    Поиск
+{% endblock %}
+
+{% block content %}
+
+
 <body>
     <h1>Поиск книг</h1>
 
@@ -25,4 +28,5 @@
         <h2> Книг с такими фильтрами нет! </h2>
     {% endif %}
 </body>
-</html>
+
+{% endblock %}

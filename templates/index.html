@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Книги</title>
-</head>
-<body>
-    <form action="{% url 'search_book' %}" method="get">
-        {% csrf_token %}
-        <input placeholder="Введите название книги" type="text" name="title">
-        <input placeholder="Введите жанр"  type="text" name="genre">
-        <input type="submit" value="OK">
-    </form>
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная по книгам
+{% endblock %}
+
+{% block content %}
+
 
     {% if request.user.is_authenticated %}
     <b> <h2>  <a href="{% url 'add_book' %}">Добавить книгу</a> </b> </h2>
@@ -40,14 +35,9 @@
 
     {% endfor %}
 
+{% endblock %}
 
 
 
 
 
-</body>
-</html>
-
-
-</body>
-</html>
