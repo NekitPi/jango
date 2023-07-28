@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Book, Genre, Movie, Category, Tag, Publisher, Comment
+from .models import Book, Genre, Movie, Category, Tag, Publisher, Comment, Favorite
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "raiting", "year", "publisher", "genre", "get_tags", "created_at", "image", "user")
-
+    list_display = ("id", "title", "raiting", "year", "publisher", "genre", "get_tags", "created_at", "image", "user", "count", "price")
+    list_display_links = ('title', 'id')
+    search_fields = ('title',)
     def get_tags(self, obj):
         tags = obj.tags.all()
         return "\n".join([str(t) for t in tags])
@@ -14,3 +15,4 @@ admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(Publisher)
 admin.site.register(Comment)
+admin.site.register(Favorite)

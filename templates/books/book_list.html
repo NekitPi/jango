@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+    Главная по книгам
+{% endblock %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <h1>Вы успешно вошли как {{ request.user.username }} </h1>
+    <h3><a href="{% url 'favorites' %}">Избранное</a></h3>
+    <h3><a href="{% url 'logout' %}">Выход</a></h3>
+    {% else %}
+    <a href="{% url 'register' %}">Регистрация</a>
+    <a href="{% url 'login' %}">Вход</a>
+    {% endif %}
+    <h1>
+        Список книг
+    </h1>
+
+    {% for book in my_new_books %}
+        <p>
+            Название: <a href="{% url 'get_book' book.id %}">
+                {{book.title}}
+            </a>
+        </p>
+        <p>Автор: {{book.author}}</p>
+        <p>Жанр: {{book.genre.title}}</p>
+        <p>Год: {{book.year}}</p>
+        <p>Цена: {{ book.price }}</p>
+        <br>
+    {% endfor %}
+    <a href="{% url 'add_book' %}">Добавить книгу</a>
+{% endblock %}

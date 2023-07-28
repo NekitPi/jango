@@ -50,15 +50,6 @@ def login_user(request):
         return redirect('books')
 
 
-        # if user is not None:
-        #     return HttpResponse("<h1> Логин и пароль верный, вы можете войти! </h1>")
-        # else:
-        #     return HttpResponse("<h1> Проверьте правильность пароля </h1>")
-        # print(user)
-        # form = LoginUserForm()
-        #
-        # return render(request, "login_user.html", context={"form": form})
-
 def logout_user(request):
     logout(request)
     return redirect('books')

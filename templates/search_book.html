@@ -11,6 +11,8 @@
     <h1>Поиск книг</h1>
 
     {% if books %}
+
+    <h3> {{ result_string }}</h3>
     {% for book in books %}
         <p>
             Название: <a href="{% url 'get_book' book.id %}">
@@ -20,6 +22,7 @@
         <p>Автор: {{book.author}}</p>
         <p>Жанр: {{book.genre.title}}</p>
         <p>Год: {{book.year}}</p>
+        <p>Цена {{book.price}}</p>
         <br>
 
     {% endfor %}
